@@ -4,12 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.easydat.common.core.domain.entity.SysDictData;
+import cn.easydat.system.domain.SysDictData;
 
 /**
  * 字典表 数据层
- * 
- * @author ruoyi
  */
 public interface SysDictDataMapper
 {

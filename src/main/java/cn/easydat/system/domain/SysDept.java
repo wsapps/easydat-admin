@@ -1,4 +1,4 @@
-package cn.easydat.common.core.domain.entity;
+package cn.easydat.system.domain;
 
 import java.util.ArrayList;
 import java.util.List;

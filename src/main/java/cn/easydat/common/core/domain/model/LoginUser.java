@@ -2,7 +2,7 @@ package cn.easydat.common.core.domain.model;
 
 import java.util.Set;
 
-import cn.easydat.common.core.domain.entity.SysUser;
+import cn.easydat.system.domain.SysUser;
 import cn.hutool.json.JSONUtil;
 
 /**

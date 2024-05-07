@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.solon.annotation.Db;
 import org.noear.solon.annotation.Component;
 
-import cn.easydat.common.core.domain.entity.SysDictData;
 import cn.easydat.common.utils.DictUtils;
+import cn.easydat.system.domain.SysDictData;
 import cn.easydat.system.mapper.SysDictDataMapper;
 import cn.easydat.system.service.ISysDictDataService;
 

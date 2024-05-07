@@ -58,9 +58,9 @@ redis:
   cache_source:
     config: |
       singleServerConfig:
-        address: redis://10.157.228.203:6379
-        password: aur#2022
-        database: 7
+        address: redis://47.97.105.19:10086
+        password: easydat#2024
+        database: 2
         
         
 # 动态数据源
@@ -72,6 +72,37 @@ ds:
     # default 或 master ，会做为动态源的默认源
     master:
       driverClassName: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://10.157.228.201:3306/bm?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true
+      jdbcUrl: jdbc:mysql://47.97.105.19:3306/bm?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true
       username: bm
       password: tmx!4^DR%A#hZYkF
+      
+      
+# 配置数据源对应的 mybatis 信息
+mybatis:
+  # 要与 DataSource bean 的名字对上
+  data_source:
+    # 实体扫描
+    typeAliases:
+      - cn.easydat.*.domain.*
+    # mapper扫描
+    mappers:
+      # 如果没有对应 xml 文件的 mapper，必须配置一下 mapper 的扫描路径
+      # - com.qingzhou.system.mapper.*
+      # 如果有 xml 文件，只需要配置 xml 文件的扫描路径，xml 对应的 mapper 会自动关联进去
+      - classpath:mapper/**/*.xml
+    # Mybatis 的扩展配置（要与 FlexConfiguration 类的属性一一对应）
+    configuration:
+      cacheEnabled: false
+      # 如果为 true，则要求所有 mapper 有 @Mapper 主解
+      mapperVerifyEnabled: false
+      mapUnderscoreToCamelCase: true
+    # Mybatis-Flex 的全局配置（要与 FlexGlobalConfig 类的属性一一对应）
+    globalConfig:
+      printBanner: true
+      # 逻辑删除字段
+      logicDeleteColumn: del_flag
+      # 主键配置
+      keyConfig:
+        # Auto自增
+        keyType: Auto
+        # value:

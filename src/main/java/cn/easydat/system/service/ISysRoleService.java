@@ -3,7 +3,7 @@ package cn.easydat.system.service;
 import java.util.List;
 import java.util.Set;
 
-import cn.easydat.common.core.domain.entity.SysRole;
+import cn.easydat.system.domain.SysRole;
 import cn.easydat.system.domain.SysUserRole;
 
 /**

@@ -14,10 +14,10 @@ import org.noear.solon.annotation.Component;
 
 import cn.easydat.common.constant.UserConstant;
 import cn.easydat.common.core.domain.TreeSelect;
-import cn.easydat.common.core.domain.entity.SysMenu;
-import cn.easydat.common.core.domain.entity.SysRole;
-import cn.easydat.common.core.domain.entity.SysUser;
 import cn.easydat.common.utils.SecurityUtil;
+import cn.easydat.system.domain.SysMenu;
+import cn.easydat.system.domain.SysRole;
+import cn.easydat.system.domain.SysUser;
 import cn.easydat.system.domain.vo.MetaVo;
 import cn.easydat.system.domain.vo.RouterVo;
 import cn.easydat.system.mapper.SysMenuMapper;
@@ -68,8 +68,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
 		if (SysUser.isAdmin(userId)) {
 			menuList = menuMapper.selectMenuList(menu);
 		} else {
-			menu.getParams().put("userId", userId);
-			menuList = menuMapper.selectMenuListByUserId(menu);
+			menuList = menuMapper.selectMenuListByUserId(menu, userId);
 		}
 		return menuList;
 	}
@@ -383,7 +382,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
 	 * @return 结果
 	 */
 	public boolean isInnerLink(SysMenu menu) {
-		return menu.getIsFrame().equals(UserConstant.NO_FRAME) && StringUtils.ishttp(menu.getPath());
+		return menu.getIsFrame().equals(UserConstant.NO_FRAME) && (menu.getPath().startsWith("http://") || menu.getPath().startsWith("https://"));
 	}
 
 	/**
@@ -461,6 +460,10 @@ public class SysMenuServiceImpl implements ISysMenuService {
 	 * @return 替换后的内链域名
 	 */
 	public String innerLinkReplaceEach(String path) {
-		return StringUtils.replaceEach(path, new String[] { Constants.HTTP, Constants.HTTPS, Constants.WWW, ".", ":" }, new String[] { "", "", "", "/", "/" });
+		String replace = StrUtil.replace(path, "http://", StrUtil.EMPTY);
+        String replace1 = StrUtil.replace(replace, "https://", StrUtil.EMPTY);
+        String replace2 = StrUtil.replace(replace1, "www.", StrUtil.EMPTY);
+        String replace3 = StrUtil.replace(replace2, ".", "/");
+        return replace3;
 	}
 }

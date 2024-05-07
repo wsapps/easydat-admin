@@ -11,11 +11,11 @@ import org.noear.solon.annotation.Component;
 import org.noear.solon.data.annotation.Tran;
 
 import cn.easydat.common.constant.UserConstant;
-import cn.easydat.common.core.domain.entity.SysRole;
-import cn.easydat.common.core.domain.entity.SysUser;
 import cn.easydat.common.utils.SecurityUtil;
+import cn.easydat.system.domain.SysRole;
 import cn.easydat.system.domain.SysRoleDept;
 import cn.easydat.system.domain.SysRoleMenu;
+import cn.easydat.system.domain.SysUser;
 import cn.easydat.system.domain.SysUserRole;
 import cn.easydat.system.mapper.SysRoleDeptMapper;
 import cn.easydat.system.mapper.SysRoleMapper;

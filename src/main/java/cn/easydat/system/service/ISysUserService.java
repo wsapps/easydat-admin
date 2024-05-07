@@ -2,7 +2,7 @@ package cn.easydat.system.service;
 
 import java.util.List;
 
-import cn.easydat.common.core.domain.entity.SysUser;
+import cn.easydat.system.domain.SysUser;
 
 /**
  * 用户 业务层

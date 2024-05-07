@@ -4,12 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.easydat.common.core.domain.entity.SysDept;
+import cn.easydat.system.domain.SysDept;
 
 /**
  * 部门管理 数据层
- * 
- * @author ruoyi
  */
 public interface SysDeptMapper
 {

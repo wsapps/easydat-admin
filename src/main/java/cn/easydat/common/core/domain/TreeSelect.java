@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import cn.easydat.common.core.domain.entity.SysDept;
-import cn.easydat.common.core.domain.entity.SysMenu;
+import cn.easydat.system.domain.SysDept;
+import cn.easydat.system.domain.SysMenu;
 
 /**
  * Treeselect树结构实体类

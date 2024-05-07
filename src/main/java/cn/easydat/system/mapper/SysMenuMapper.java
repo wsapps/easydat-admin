@@ -4,12 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.easydat.common.core.domain.entity.SysMenu;
+import cn.easydat.system.domain.SysMenu;
 
 /**
  * 菜单表 数据层
- *
- * @author ruoyi
  */
 public interface SysMenuMapper
 {
@@ -34,7 +32,7 @@ public interface SysMenuMapper
      * @param menu 菜单信息
      * @return 菜单列表
      */
-    public List<SysMenu> selectMenuListByUserId(SysMenu menu);
+    public List<SysMenu> selectMenuListByUserId(SysMenu menu, Long userId);
 
     /**
      * 根据角色ID查询权限

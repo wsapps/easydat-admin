@@ -10,10 +10,10 @@ import org.noear.solon.annotation.Component;
 
 import cn.easydat.common.constant.UserConstant;
 import cn.easydat.common.core.domain.TreeSelect;
-import cn.easydat.common.core.domain.entity.SysDept;
-import cn.easydat.common.core.domain.entity.SysRole;
-import cn.easydat.common.core.domain.entity.SysUser;
 import cn.easydat.common.utils.SecurityUtil;
+import cn.easydat.system.domain.SysDept;
+import cn.easydat.system.domain.SysRole;
+import cn.easydat.system.domain.SysUser;
 import cn.easydat.system.mapper.SysDeptMapper;
 import cn.easydat.system.mapper.SysRoleMapper;
 import cn.easydat.system.service.ISysDeptService;

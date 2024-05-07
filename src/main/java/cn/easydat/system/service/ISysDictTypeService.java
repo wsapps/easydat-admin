@@ -2,8 +2,8 @@ package cn.easydat.system.service;
 
 import java.util.List;
 
-import cn.easydat.common.core.domain.entity.SysDictData;
-import cn.easydat.common.core.domain.entity.SysDictType;
+import cn.easydat.system.domain.SysDictData;
+import cn.easydat.system.domain.SysDictType;
 
 /**
  * 字典 业务层

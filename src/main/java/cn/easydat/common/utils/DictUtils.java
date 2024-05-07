@@ -5,7 +5,7 @@ import java.util.List;
 import org.noear.solon.Solon;
 
 import cn.easydat.common.constant.CacheConstant;
-import cn.easydat.common.core.domain.entity.SysDictData;
+import cn.easydat.system.domain.SysDictData;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONArray;

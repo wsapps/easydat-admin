@@ -12,10 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.easydat.common.constant.UserConstant;
-import cn.easydat.common.core.domain.entity.SysRole;
-import cn.easydat.common.core.domain.entity.SysUser;
 import cn.easydat.common.utils.SecurityUtil;
 import cn.easydat.system.domain.SysPost;
+import cn.easydat.system.domain.SysRole;
+import cn.easydat.system.domain.SysUser;
 import cn.easydat.system.domain.SysUserPost;
 import cn.easydat.system.domain.SysUserRole;
 import cn.easydat.system.mapper.SysPostMapper;

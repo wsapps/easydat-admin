@@ -3,7 +3,7 @@ package cn.easydat.system.service;
 import java.util.List;
 
 import cn.easydat.common.core.domain.TreeSelect;
-import cn.easydat.common.core.domain.entity.SysDept;
+import cn.easydat.system.domain.SysDept;
 
 /**
  * 部门管理 服务层

@@ -10,9 +10,9 @@ import org.noear.solon.annotation.Component;
 import org.noear.solon.data.annotation.Tran;
 
 import cn.easydat.common.constant.UserConstant;
-import cn.easydat.common.core.domain.entity.SysDictData;
-import cn.easydat.common.core.domain.entity.SysDictType;
 import cn.easydat.common.utils.DictUtils;
+import cn.easydat.system.domain.SysDictData;
+import cn.easydat.system.domain.SysDictType;
 import cn.easydat.system.mapper.SysDictDataMapper;
 import cn.easydat.system.mapper.SysDictTypeMapper;
 import cn.easydat.system.service.ISysDictTypeService;

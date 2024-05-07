@@ -4,12 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.easydat.common.core.domain.entity.SysUser;
+import cn.easydat.system.domain.SysUser;
 
 /**
  * 用户表 数据层
- * 
- * @author ruoyi
  */
 public interface SysUserMapper
 {

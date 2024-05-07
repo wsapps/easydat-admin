@@ -2,12 +2,10 @@ package cn.easydat.system.mapper;
 
 import java.util.List;
 
-import cn.easydat.common.core.domain.entity.SysDictType;
+import cn.easydat.system.domain.SysDictType;
 
 /**
  * 字典表 数据层
- * 
- * @author ruoyi
  */
 public interface SysDictTypeMapper
 {

@@ -2,12 +2,10 @@ package cn.easydat.system.mapper;
 
 import java.util.List;
 
-import cn.easydat.common.core.domain.entity.SysRole;
+import cn.easydat.system.domain.SysRole;
 
 /**
  * 角色表 数据层
- * 
- * @author ruoyi
  */
 public interface SysRoleMapper
 {

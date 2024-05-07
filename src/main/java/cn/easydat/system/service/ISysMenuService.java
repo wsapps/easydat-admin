@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import cn.easydat.common.core.domain.TreeSelect;
-import cn.easydat.common.core.domain.entity.SysMenu;
+import cn.easydat.system.domain.SysMenu;
 import cn.easydat.system.domain.vo.RouterVo;
 
 /**
