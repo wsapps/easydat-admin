@@ -1,0 +1,77 @@
+server.port: 18001
+
+solon.app:
+  name: 'admin'
+  group: 'cn.easydat'
+  
+  logging.appender:
+    console:
+      level: TRACE
+    file:
+      name: "logs/${solon.app.name}"
+      rolling: "logs/${solon.app.name}_%d{yyyy-MM-dd}_%i.log"
+      level: INFO
+      maxFileSize: "10 MB"
+      maxHistory: "7"
+      
+easydat:
+  xss:
+    # 过滤开关
+    enabled: true
+    # 排除路径
+    excludes:
+  # 安全配置
+  security:
+    # IP黑名单
+    ips:
+    # 放行白名单
+    whites:
+      - /captcha
+      - /login
+      - /logout
+      - /solon-admin/**
+      - /healthz
+      - /doc.html
+      - /swagger-resources
+      - /swagger/*
+      
+sa-token:
+  # token名称（同时也是 cookie名称）
+  token-name: Authorization
+  # token前缀
+  token-prefix: Bearer
+  # token有效期（单位：秒） 默认30天，-1 代表永久有效
+  timeout: 2592000
+  # token临时有效期 (指定时间内无操作就视为token过期，单位：秒），默认-1 代表不限制，永不冻结
+  active-timeout: -1
+  # 是否允许同一账号多地同时登录 （为 true 时允许一起登录, 为 false 时新登录挤掉旧登录）
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token （为 true 时所有登录共用一个 token, 为 false 时每次登录新建一个 token）
+  is-share: true
+  # token风格（默认可取值：uuid、simple-uuid、random-32、random-64、random-128、tik）
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true
+  
+# Redis配置
+redis:
+  cache_source:
+    config: |
+      singleServerConfig:
+        address: redis://10.157.228.203:6379
+        password: aur#2022
+        database: 7
+        
+        
+# 动态数据源
+ds:
+  data_source:
+    type: com.zaxxer.hikari.HikariDataSource
+    # 严格模式（指定的源不存时，严格模式会抛异常；非严格模式用默认源）
+    strict: true
+    # default 或 master ，会做为动态源的默认源
+    master:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://10.157.228.201:3306/bm?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true
+      username: bm
+      password: tmx!4^DR%A#hZYkF
