@@ -12,7 +12,7 @@ import cn.easydat.system.domain.vo.RouterVo;
  * 
  * @author ruoyi
  */
-public interface ISysMenuService
+public interface SysMenuService
 {
     /**
      * 根据用户查询系统菜单列表

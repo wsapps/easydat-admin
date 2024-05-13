@@ -9,7 +9,7 @@ import cn.easydat.system.domain.SysConfig;
  * 
  * @author ruoyi
  */
-public interface ISysConfigService
+public interface SysConfigService
 {
     /**
      * 查询参数配置信息

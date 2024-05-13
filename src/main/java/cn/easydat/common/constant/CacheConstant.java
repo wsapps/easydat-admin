@@ -2,6 +2,9 @@ package cn.easydat.common.constant;
 
 public class CacheConstant {
 	
+	//登录验证码有效期（分钟）
+    public static final long CAPTCHA_CODE_EXPIRATION = 2L;
+	
 	/**
      * 登录用户
      */

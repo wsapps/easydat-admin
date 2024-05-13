@@ -16,7 +16,7 @@ import cn.easydat.system.domain.SysRole;
 import cn.easydat.system.domain.SysUser;
 import cn.easydat.system.mapper.SysDeptMapper;
 import cn.easydat.system.mapper.SysRoleMapper;
-import cn.easydat.system.service.ISysDeptService;
+import cn.easydat.system.service.SysDeptService;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
@@ -26,7 +26,7 @@ import cn.hutool.core.util.StrUtil;
  * 部门管理 服务实现
  */
 @Component
-public class SysDeptServiceImpl implements ISysDeptService {
+public class SysDeptServiceImpl implements SysDeptService {
 	@Db
 	private SysDeptMapper deptMapper;
 

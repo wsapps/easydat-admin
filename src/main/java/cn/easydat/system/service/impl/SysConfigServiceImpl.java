@@ -11,7 +11,7 @@ import cn.easydat.common.constant.UserConstant;
 import cn.easydat.common.utils.RedisUtil;
 import cn.easydat.system.domain.SysConfig;
 import cn.easydat.system.mapper.SysConfigMapper;
-import cn.easydat.system.service.ISysConfigService;
+import cn.easydat.system.service.SysConfigService;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -20,7 +20,7 @@ import cn.hutool.core.util.StrUtil;
  * 参数配置 服务层实现
  */
 @Component
-public class SysConfigServiceImpl implements ISysConfigService {
+public class SysConfigServiceImpl implements SysConfigService {
 	@Db
 	private SysConfigMapper configMapper;
 

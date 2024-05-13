@@ -10,7 +10,7 @@ import cn.easydat.system.domain.SysDept;
  * 
  * @author ruoyi
  */
-public interface ISysDeptService
+public interface SysDeptService
 {
     /**
      * 查询部门管理数据

@@ -7,13 +7,13 @@ import org.noear.solon.annotation.Component;
 
 import cn.easydat.system.domain.SysLogininfor;
 import cn.easydat.system.mapper.SysLogininforMapper;
-import cn.easydat.system.service.ISysLogininforService;
+import cn.easydat.system.service.SysLogininforService;
 
 /**
  * 系统访问日志情况信息 服务层处理
  */
 @Component
-public class SysLogininforServiceImpl implements ISysLogininforService {
+public class SysLogininforServiceImpl implements SysLogininforService {
 
 	@Db
 	private SysLogininforMapper logininforMapper;

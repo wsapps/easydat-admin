@@ -7,13 +7,13 @@ import org.noear.solon.annotation.Component;
 
 import cn.easydat.system.domain.SysOperLog;
 import cn.easydat.system.mapper.SysOperLogMapper;
-import cn.easydat.system.service.ISysOperLogService;
+import cn.easydat.system.service.SysOperLogService;
 
 /**
  * 操作日志 服务层处理
  */
 @Component
-public class SysOperLogServiceImpl implements ISysOperLogService {
+public class SysOperLogServiceImpl implements SysOperLogService {
 	@Db
 	private SysOperLogMapper operLogMapper;
 

@@ -23,8 +23,8 @@ import cn.easydat.system.mapper.SysRoleMapper;
 import cn.easydat.system.mapper.SysUserMapper;
 import cn.easydat.system.mapper.SysUserPostMapper;
 import cn.easydat.system.mapper.SysUserRoleMapper;
-import cn.easydat.system.service.ISysConfigService;
-import cn.easydat.system.service.ISysUserService;
+import cn.easydat.system.service.SysConfigService;
+import cn.easydat.system.service.SysUserService;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -34,7 +34,7 @@ import cn.hutool.core.util.StrUtil;
  * 用户 业务层处理
  */
 @Component
-public class SysUserServiceImpl implements ISysUserService {
+public class SysUserServiceImpl implements SysUserService {
 	private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
 	@Db
@@ -53,7 +53,7 @@ public class SysUserServiceImpl implements ISysUserService {
 	private SysUserPostMapper userPostMapper;
 
 	@Inject
-	private ISysConfigService configService;
+	private SysConfigService configService;
 
 //	@Inject
 //	protected Validator validator;

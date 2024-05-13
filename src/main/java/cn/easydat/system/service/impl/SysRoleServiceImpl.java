@@ -21,7 +21,7 @@ import cn.easydat.system.mapper.SysRoleDeptMapper;
 import cn.easydat.system.mapper.SysRoleMapper;
 import cn.easydat.system.mapper.SysRoleMenuMapper;
 import cn.easydat.system.mapper.SysUserRoleMapper;
-import cn.easydat.system.service.ISysRoleService;
+import cn.easydat.system.service.SysRoleService;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 
@@ -29,7 +29,7 @@ import cn.hutool.core.util.ObjectUtil;
  * 角色 业务层处理
  */
 @Component
-public class SysRoleServiceImpl implements ISysRoleService {
+public class SysRoleServiceImpl implements SysRoleService {
 	@Db
 	private SysRoleMapper roleMapper;
 

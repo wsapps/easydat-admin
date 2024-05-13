@@ -4,7 +4,7 @@ import org.noear.solon.annotation.Component;
 
 import cn.easydat.common.core.domain.model.LoginUser;
 import cn.easydat.system.domain.SysUserOnline;
-import cn.easydat.system.service.ISysUserOnlineService;
+import cn.easydat.system.service.SysUserOnlineService;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 
@@ -12,7 +12,7 @@ import cn.hutool.core.util.StrUtil;
  * 在线用户 服务层处理
  */
 @Component
-public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
+public class SysUserOnlineServiceImpl implements SysUserOnlineService {
 	/**
 	 * 通过登录地址查询信息
 	 * 

@@ -7,13 +7,13 @@ import org.noear.solon.annotation.Component;
 
 import cn.easydat.system.domain.SysNotice;
 import cn.easydat.system.mapper.SysNoticeMapper;
-import cn.easydat.system.service.ISysNoticeService;
+import cn.easydat.system.service.SysNoticeService;
 
 /**
  * 公告 服务层实现
  */
 @Component
-public class SysNoticeServiceImpl implements ISysNoticeService {
+public class SysNoticeServiceImpl implements SysNoticeService {
 	@Db
 	private SysNoticeMapper noticeMapper;
 

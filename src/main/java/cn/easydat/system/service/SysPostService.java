@@ -9,7 +9,7 @@ import cn.easydat.system.domain.SysPost;
  * 
  * @author ruoyi
  */
-public interface ISysPostService
+public interface SysPostService
 {
     /**
      * 查询岗位信息集合

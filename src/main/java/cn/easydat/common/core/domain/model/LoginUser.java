@@ -7,8 +7,6 @@ import cn.hutool.json.JSONUtil;
 
 /**
  * 登录用户身份权限
- * 
- * @author ruoyi
  */
 public class LoginUser {
 

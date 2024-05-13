@@ -15,7 +15,7 @@ import cn.easydat.system.domain.SysDictData;
 import cn.easydat.system.domain.SysDictType;
 import cn.easydat.system.mapper.SysDictDataMapper;
 import cn.easydat.system.mapper.SysDictTypeMapper;
-import cn.easydat.system.service.ISysDictTypeService;
+import cn.easydat.system.service.SysDictTypeService;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 
@@ -23,7 +23,7 @@ import cn.hutool.core.util.ObjectUtil;
  * 字典 业务层处理
  */
 @Component
-public class SysDictTypeServiceImpl implements ISysDictTypeService {
+public class SysDictTypeServiceImpl implements SysDictTypeService {
 	@Db
 	private SysDictTypeMapper dictTypeMapper;
 

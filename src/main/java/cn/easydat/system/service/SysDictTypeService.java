@@ -10,7 +10,7 @@ import cn.easydat.system.domain.SysDictType;
  * 
  * @author ruoyi
  */
-public interface ISysDictTypeService
+public interface SysDictTypeService
 {
     /**
      * 根据条件分页查询字典类型

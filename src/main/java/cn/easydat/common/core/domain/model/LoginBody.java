@@ -4,8 +4,6 @@ import cn.hutool.json.JSONUtil;
 
 /**
  * 用户登录对象
- * 
- * @author ruoyi
  */
 public class LoginBody {
 	/**

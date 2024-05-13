@@ -23,7 +23,7 @@ import cn.easydat.system.domain.vo.RouterVo;
 import cn.easydat.system.mapper.SysMenuMapper;
 import cn.easydat.system.mapper.SysRoleMapper;
 import cn.easydat.system.mapper.SysRoleMenuMapper;
-import cn.easydat.system.service.ISysMenuService;
+import cn.easydat.system.service.SysMenuService;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -32,7 +32,7 @@ import cn.hutool.core.util.StrUtil;
  * 菜单 业务层处理
  */
 @Component
-public class SysMenuServiceImpl implements ISysMenuService {
+public class SysMenuServiceImpl implements SysMenuService {
 	public static final String PREMISSION_STRING = "perms[\"{0}\"]";
 
 	@Db

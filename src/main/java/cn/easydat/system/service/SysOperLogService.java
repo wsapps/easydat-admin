@@ -9,7 +9,7 @@ import cn.easydat.system.domain.SysOperLog;
  * 
  * @author ruoyi
  */
-public interface ISysOperLogService
+public interface SysOperLogService
 {
     /**
      * 新增操作日志

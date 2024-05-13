@@ -8,13 +8,13 @@ import org.noear.solon.annotation.Component;
 import cn.easydat.common.utils.DictUtils;
 import cn.easydat.system.domain.SysDictData;
 import cn.easydat.system.mapper.SysDictDataMapper;
-import cn.easydat.system.service.ISysDictDataService;
+import cn.easydat.system.service.SysDictDataService;
 
 /**
  * 字典 业务层处理
  */
 @Component
-public class SysDictDataServiceImpl implements ISysDictDataService {
+public class SysDictDataServiceImpl implements SysDictDataService {
 	
 	@Db
 	private SysDictDataMapper dictDataMapper;

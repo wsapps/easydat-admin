@@ -9,14 +9,14 @@ import cn.easydat.common.constant.UserConstant;
 import cn.easydat.system.domain.SysPost;
 import cn.easydat.system.mapper.SysPostMapper;
 import cn.easydat.system.mapper.SysUserPostMapper;
-import cn.easydat.system.service.ISysPostService;
+import cn.easydat.system.service.SysPostService;
 import cn.hutool.core.util.ObjectUtil;
 
 /**
  * 岗位信息 服务层处理
  */
 @Component
-public class SysPostServiceImpl implements ISysPostService {
+public class SysPostServiceImpl implements SysPostService {
 	@Db
 	private SysPostMapper postMapper;
 

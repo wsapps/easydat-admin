@@ -9,7 +9,7 @@ import cn.easydat.system.domain.SysNotice;
  * 
  * @author ruoyi
  */
-public interface ISysNoticeService
+public interface SysNoticeService
 {
     /**
      * 查询公告信息

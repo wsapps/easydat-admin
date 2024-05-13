@@ -86,5 +86,7 @@
         <appender-ref ref="File"/>
         <appender-ref ref="Solon"/>
     </root>
+    
+    <logger name="cn.easydat.framework.filter.GlobalFilter" level="ERROR" />
 
 </configuration>

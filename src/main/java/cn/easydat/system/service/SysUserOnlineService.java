@@ -8,7 +8,7 @@ import cn.easydat.system.domain.SysUserOnline;
  * 
  * @author ruoyi
  */
-public interface ISysUserOnlineService
+public interface SysUserOnlineService
 {
     /**
      * 通过登录地址查询信息
