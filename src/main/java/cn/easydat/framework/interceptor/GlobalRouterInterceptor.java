@@ -11,6 +11,7 @@ import org.noear.solon.core.route.RouterInterceptor;
 import org.noear.solon.core.route.RouterInterceptorChain;
 
 import cn.easydat.common.core.domain.AjaxResult;
+import cn.easydat.common.core.page.TableDataInfo;
 import cn.easydat.common.exception.EasydatException;
 import cn.easydat.common.utils.XssUtil;
 import cn.easydat.framework.config.XssConfig;
@@ -60,6 +61,10 @@ public class GlobalRouterInterceptor implements RouterInterceptor {
 		}
 		
 		if(obj instanceof AjaxResult) {
+			return obj;
+		}
+		
+		if(obj instanceof TableDataInfo) {
 			return obj;
 		}
 		

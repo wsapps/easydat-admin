@@ -31,6 +31,10 @@ public class LoginServiceImpl implements LoginService {
 
 	@Inject
 	private SysMenuService menuService;
+	
+	@Inject
+	private LoginService loginService;
+	
 
 	@Override
 	public String login(LoginBody loginBody) {
@@ -46,6 +50,14 @@ public class LoginServiceImpl implements LoginService {
 			String username = sysUser.getUserName();
 			loginUser.setUsername(username);
 			loginUser.setIpaddr(Context.current().realIp());
+			
+			// 角色集合
+	        Set<String> roles = loginService.getRolePermission(sysUser);
+	        loginUser.setRoles(roles);
+	        // 权限集合
+	        Set<String> permissions = loginService.getMenuPermission(sysUser);
+	        loginUser.setPermissions(permissions);
+			
 			LoginUser login = SecurityUtil.login(loginUser);
 			token = login.getToken();
 		} else {

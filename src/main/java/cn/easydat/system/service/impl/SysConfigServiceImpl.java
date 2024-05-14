@@ -7,7 +7,7 @@ import org.noear.solon.annotation.Component;
 import org.noear.solon.annotation.Inject;
 
 import cn.easydat.common.constant.CacheConstant;
-import cn.easydat.common.constant.UserConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.common.utils.RedisUtil;
 import cn.easydat.system.domain.SysConfig;
 import cn.easydat.system.mapper.SysConfigMapper;
@@ -131,7 +131,7 @@ public class SysConfigServiceImpl implements SysConfigService {
 	public void deleteConfigByIds(Long[] configIds) {
 		for (Long configId : configIds) {
 			SysConfig config = selectConfigById(configId);
-			if (StrUtil.equals(UserConstant.YES, config.getConfigType())) {
+			if (StrUtil.equals(EasydatConstant.YES, config.getConfigType())) {
 				throw new RuntimeException(String.format("内置参数【%1$s】不能删除 ", config.getConfigKey()));
 			}
 			configMapper.deleteConfigById(configId);
@@ -178,9 +178,9 @@ public class SysConfigServiceImpl implements SysConfigService {
 		Long configId = null == config.getConfigId() ? -1L : config.getConfigId();
 		SysConfig info = configMapper.checkConfigKeyUnique(config.getConfigKey());
 		if (ObjectUtil.isNotNull(info) && info.getConfigId().longValue() != configId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**

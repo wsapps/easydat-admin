@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.apache.ibatis.solon.annotation.Db;
 import org.noear.solon.annotation.Component;
 
-import cn.easydat.common.constant.UserConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.common.core.domain.TreeSelect;
 import cn.easydat.common.utils.SecurityUtil;
 import cn.easydat.system.domain.SysMenu;
@@ -156,7 +156,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 			router.setQuery(menu.getQuery());
 			router.setMeta(new MetaVo(menu.getMenuName(), menu.getIcon(), StrUtil.equals("1", menu.getIsCache()), menu.getPath()));
 			List<SysMenu> cMenus = menu.getChildren();
-			if (CollectionUtil.isNotEmpty(cMenus) && UserConstant.TYPE_DIR.equals(menu.getMenuType())) {
+			if (CollectionUtil.isNotEmpty(cMenus) && EasydatConstant.TYPE_DIR.equals(menu.getMenuType())) {
 				router.setAlwaysShow(true);
 				router.setRedirect("noRedirect");
 				router.setChildren(buildMenus(cMenus));
@@ -178,7 +178,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 				RouterVo children = new RouterVo();
 				String routerPath = innerLinkReplaceEach(menu.getPath());
 				children.setPath(routerPath);
-				children.setComponent(UserConstant.INNER_LINK);
+				children.setComponent(EasydatConstant.INNER_LINK);
 				children.setName(StrUtil.upperFirst(routerPath));
 				children.setMeta(new MetaVo(menu.getMenuName(), menu.getIcon(), menu.getPath()));
 				childrenList.add(children);
@@ -304,9 +304,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 		Long menuId = null == menu.getMenuId() ? -1L : menu.getMenuId();
 		SysMenu info = menuMapper.checkMenuNameUnique(menu.getMenuName(), menu.getParentId());
 		if (ObjectUtil.isNotNull(info) && info.getMenuId().longValue() != menuId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**
@@ -337,7 +337,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 			routerPath = innerLinkReplaceEach(routerPath);
 		}
 		// 非外链并且是一级目录（类型为目录）
-		if (0 == menu.getParentId().intValue() && UserConstant.TYPE_DIR.equals(menu.getMenuType()) && UserConstant.NO_FRAME.equals(menu.getIsFrame())) {
+		if (0 == menu.getParentId().intValue() && EasydatConstant.TYPE_DIR.equals(menu.getMenuType()) && EasydatConstant.NO_FRAME.equals(menu.getIsFrame())) {
 			routerPath = "/" + menu.getPath();
 		}
 		// 非外链并且是一级目录（类型为菜单）
@@ -354,13 +354,13 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return 组件信息
 	 */
 	public String getComponent(SysMenu menu) {
-		String component = UserConstant.LAYOUT;
+		String component = EasydatConstant.LAYOUT;
 		if (StrUtil.isNotEmpty(menu.getComponent()) && !isMenuFrame(menu)) {
 			component = menu.getComponent();
 		} else if (StrUtil.isEmpty(menu.getComponent()) && menu.getParentId().intValue() != 0 && isInnerLink(menu)) {
-			component = UserConstant.INNER_LINK;
+			component = EasydatConstant.INNER_LINK;
 		} else if (StrUtil.isEmpty(menu.getComponent()) && isParentView(menu)) {
-			component = UserConstant.PARENT_VIEW;
+			component = EasydatConstant.PARENT_VIEW;
 		}
 		return component;
 	}
@@ -372,7 +372,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return 结果
 	 */
 	public boolean isMenuFrame(SysMenu menu) {
-		return menu.getParentId().intValue() == 0 && UserConstant.TYPE_MENU.equals(menu.getMenuType()) && menu.getIsFrame().equals(UserConstant.NO_FRAME);
+		return menu.getParentId().intValue() == 0 && EasydatConstant.TYPE_MENU.equals(menu.getMenuType()) && menu.getIsFrame().equals(EasydatConstant.NO_FRAME);
 	}
 
 	/**
@@ -382,7 +382,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return 结果
 	 */
 	public boolean isInnerLink(SysMenu menu) {
-		return menu.getIsFrame().equals(UserConstant.NO_FRAME) && (menu.getPath().startsWith("http://") || menu.getPath().startsWith("https://"));
+		return menu.getIsFrame().equals(EasydatConstant.NO_FRAME) && (menu.getPath().startsWith("http://") || menu.getPath().startsWith("https://"));
 	}
 
 	/**
@@ -392,7 +392,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return 结果
 	 */
 	public boolean isParentView(SysMenu menu) {
-		return menu.getParentId().intValue() != 0 && UserConstant.TYPE_DIR.equals(menu.getMenuType());
+		return menu.getParentId().intValue() != 0 && EasydatConstant.TYPE_DIR.equals(menu.getMenuType());
 	}
 
 	/**

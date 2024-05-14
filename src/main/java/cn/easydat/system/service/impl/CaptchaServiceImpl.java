@@ -7,6 +7,7 @@ import org.noear.solon.annotation.Inject;
 import org.noear.solon.core.handle.Result;
 
 import cn.easydat.common.constant.CacheConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.common.utils.RedisUtil;
 import cn.easydat.framework.config.CaptchaConfig;
 import cn.easydat.system.service.CaptchaService;
@@ -98,7 +99,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 		}
 
 		// 将结果放入缓存
-		redisUtil.setCacheObject(codeKey, code, Duration.ofMinutes(CacheConstant.CAPTCHA_CODE_EXPIRATION));
+		redisUtil.setCacheObject(codeKey, code, Duration.ofMinutes(EasydatConstant.CAPTCHA_CODE_EXPIRATION));
 
 		String img = t.getImageBase64();
 		return img;

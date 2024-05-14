@@ -10,7 +10,7 @@ import org.apache.ibatis.solon.annotation.Db;
 import org.noear.solon.annotation.Component;
 import org.noear.solon.data.annotation.Tran;
 
-import cn.easydat.common.constant.UserConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.common.utils.SecurityUtil;
 import cn.easydat.system.domain.SysRole;
 import cn.easydat.system.domain.SysRoleDept;
@@ -135,9 +135,9 @@ public class SysRoleServiceImpl implements SysRoleService {
 		Long roleId = null == role.getRoleId() ? -1L : role.getRoleId();
 		SysRole info = roleMapper.checkRoleNameUnique(role.getRoleName());
 		if (ObjectUtil.isNotNull(info) && info.getRoleId().longValue() != roleId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**
@@ -151,9 +151,9 @@ public class SysRoleServiceImpl implements SysRoleService {
 		Long roleId = null == role.getRoleId() ? -1L : role.getRoleId();
 		SysRole info = roleMapper.checkRoleKeyUnique(role.getRoleKey());
 		if (ObjectUtil.isNotNull(info) && info.getRoleId().longValue() != roleId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**

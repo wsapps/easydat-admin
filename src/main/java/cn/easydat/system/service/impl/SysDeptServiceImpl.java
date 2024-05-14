@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.apache.ibatis.solon.annotation.Db;
 import org.noear.solon.annotation.Component;
 
-import cn.easydat.common.constant.UserConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.common.core.domain.TreeSelect;
 import cn.easydat.common.utils.SecurityUtil;
 import cn.easydat.system.domain.SysDept;
@@ -160,9 +160,9 @@ public class SysDeptServiceImpl implements SysDeptService {
 		Long deptId = null == dept.getDeptId() ? -1L : dept.getDeptId();
 		SysDept info = deptMapper.checkDeptNameUnique(dept.getDeptName(), dept.getParentId());
 		if (ObjectUtil.isNotNull(info) && info.getDeptId().longValue() != deptId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**
@@ -192,7 +192,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 	public int insertDept(SysDept dept) {
 		SysDept info = deptMapper.selectDeptById(dept.getParentId());
 		// 如果父节点不为正常状态,则不允许新增子节点
-		if (!UserConstant.DEPT_NORMAL.equals(info.getStatus())) {
+		if (!EasydatConstant.DEPT_NORMAL.equals(info.getStatus())) {
 			throw new RuntimeException("部门停用，不允许新增");
 		}
 		dept.setAncestors(info.getAncestors() + "," + dept.getParentId());
@@ -216,7 +216,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 			updateDeptChildren(dept.getDeptId(), newAncestors, oldAncestors);
 		}
 		int result = deptMapper.updateDept(dept);
-		if (UserConstant.DEPT_NORMAL.equals(dept.getStatus()) && StrUtil.isNotEmpty(dept.getAncestors()) && !StrUtil.equals("0", dept.getAncestors())) {
+		if (EasydatConstant.DEPT_NORMAL.equals(dept.getStatus()) && StrUtil.isNotEmpty(dept.getAncestors()) && !StrUtil.equals("0", dept.getAncestors())) {
 			// 如果该部门是启用状态，则启用该部门的所有上级部门
 			updateParentDeptStatusNormal(dept);
 		}

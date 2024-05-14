@@ -9,7 +9,7 @@ import org.apache.ibatis.solon.annotation.Db;
 import org.noear.solon.annotation.Component;
 import org.noear.solon.data.annotation.Tran;
 
-import cn.easydat.common.constant.UserConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.common.utils.DictUtils;
 import cn.easydat.system.domain.SysDictData;
 import cn.easydat.system.domain.SysDictType;
@@ -185,8 +185,8 @@ public class SysDictTypeServiceImpl implements SysDictTypeService {
 		Long dictId = null == dict.getDictId() ? -1L : dict.getDictId();
 		SysDictType dictType = dictTypeMapper.checkDictTypeUnique(dict.getDictType());
 		if (ObjectUtil.isNotNull(dictType) && dictType.getDictId().longValue() != dictId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 }

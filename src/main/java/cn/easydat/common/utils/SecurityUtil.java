@@ -2,7 +2,7 @@ package cn.easydat.common.utils;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.easydat.common.constant.CacheConstant;
-import cn.easydat.common.constant.UserConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.common.core.domain.model.LoginUser;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
@@ -114,7 +114,7 @@ public class SecurityUtil {
      * @return 结果
      */
     public static boolean isAdmin(Long userId) {
-        return userId != null && userId == UserConstant.ADMIN_USER_ID;
+        return userId != null && userId == EasydatConstant.ADMIN_USER_ID;
     }
 
     /**

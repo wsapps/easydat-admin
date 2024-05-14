@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.solon.annotation.Db;
 import org.noear.solon.annotation.Component;
 
-import cn.easydat.common.constant.UserConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.system.domain.SysPost;
 import cn.easydat.system.mapper.SysPostMapper;
 import cn.easydat.system.mapper.SysUserPostMapper;
@@ -77,9 +77,9 @@ public class SysPostServiceImpl implements SysPostService {
 		Long postId = null == post.getPostId() ? -1L : post.getPostId();
 		SysPost info = postMapper.checkPostNameUnique(post.getPostName());
 		if (ObjectUtil.isNotNull(info) && info.getPostId().longValue() != postId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**
@@ -93,9 +93,9 @@ public class SysPostServiceImpl implements SysPostService {
 		Long postId = null == post.getPostId() ? -1L : post.getPostId();
 		SysPost info = postMapper.checkPostCodeUnique(post.getPostCode());
 		if (ObjectUtil.isNotNull(info) && info.getPostId().longValue() != postId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**

@@ -8,7 +8,6 @@ import cn.easydat.common.constant.CacheConstant;
 import cn.easydat.system.domain.SysDictData;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONArray;
 
 /**
  * 字典工具类
@@ -36,11 +35,8 @@ public class DictUtils {
 	 * @return dictDatas 字典数据列表
 	 */
 	public static List<SysDictData> getDictCache(String key) {
-		JSONArray arrayCache = Solon.context().getBean(RedisUtil.class).getCacheObject(getCacheKey(key));
-		if (null != arrayCache) {
-			return arrayCache.toList(SysDictData.class);
-		}
-		return null;
+		List<SysDictData> sysDictDatas = Solon.context().getBean(RedisUtil.class).getCacheObject(getCacheKey(key));
+		return sysDictDatas;
 	}
 
 	/**

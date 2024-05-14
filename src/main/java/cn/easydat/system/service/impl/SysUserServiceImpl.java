@@ -11,7 +11,7 @@ import org.noear.solon.data.annotation.Tran;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cn.easydat.common.constant.UserConstant;
+import cn.easydat.common.constant.EasydatConstant;
 import cn.easydat.common.utils.SecurityUtil;
 import cn.easydat.system.domain.SysPost;
 import cn.easydat.system.domain.SysRole;
@@ -154,9 +154,9 @@ public class SysUserServiceImpl implements SysUserService {
 		Long userId = null == user.getUserId() ? -1L : user.getUserId();
 		SysUser info = userMapper.checkUserNameUnique(user.getUserName());
 		if (ObjectUtil.isNotNull(info) && info.getUserId().longValue() != userId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**
@@ -170,9 +170,9 @@ public class SysUserServiceImpl implements SysUserService {
 		Long userId = null == user.getUserId() ? -1L : user.getUserId();
 		SysUser info = userMapper.checkPhoneUnique(user.getPhonenumber());
 		if (ObjectUtil.isNotNull(info) && info.getUserId().longValue() != userId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**
@@ -186,9 +186,9 @@ public class SysUserServiceImpl implements SysUserService {
 		Long userId = null == user.getUserId() ? -1L : user.getUserId();
 		SysUser info = userMapper.checkEmailUnique(user.getEmail());
 		if (ObjectUtil.isNotNull(info) && info.getUserId().longValue() != userId.longValue()) {
-			return UserConstant.NOT_UNIQUE;
+			return EasydatConstant.NOT_UNIQUE;
 		}
-		return UserConstant.UNIQUE;
+		return EasydatConstant.UNIQUE;
 	}
 
 	/**
