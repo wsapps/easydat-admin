@@ -6,8 +6,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.noear.solon.annotation.Around;
+
 import cn.easydat.common.enums.BusinessType;
 import cn.easydat.common.enums.OperatorType;
+import cn.easydat.framework.aspect.LogAspect;
 
 /**
  * 自定义操作日志记录注解
@@ -15,6 +18,7 @@ import cn.easydat.common.enums.OperatorType;
  */
 @Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
+@Around(LogAspect.class)
 @Documented
 public @interface Log {
 	/**
