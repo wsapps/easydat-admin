@@ -99,6 +99,13 @@ public class SecurityUtil {
     public static void logout() {
         StpUtil.logout();
     }
+    
+    /**
+     * 登出
+     */
+    public static void logout(Object loginId) {
+        StpUtil.logout(loginId);
+    }
 
     /**
      * 是否登录

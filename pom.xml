@@ -27,6 +27,9 @@
 		<mysql.version>8.1.0</mysql.version>
 		<druid.version>1.2.22</druid.version>
 		<mybatis-flex.version>1.8.8</mybatis-flex.version>
+		<oshi.version>6.4.8</oshi.version>
+		<jedis.version>4.4.8</jedis.version>
+		<velocity.version>2.3</velocity.version>
 	</properties>
 
 	<dependencyManagement>
@@ -82,12 +85,12 @@
 			<groupId>org.noear</groupId>
 			<artifactId>mybatis-solon-plugin</artifactId>
 		</dependency>
-		
+
 		<!-- mybatis分页插件 -->
-        <dependency>
-            <groupId>org.noear</groupId>
-            <artifactId>mybatis-pagehelper-solon-plugin</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.noear</groupId>
+			<artifactId>mybatis-pagehelper-solon-plugin</artifactId>
+		</dependency>
 
 		<!-- noear -->
 
@@ -141,6 +144,25 @@
 			<version>${mybatis-flex.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- 获取系统信息 -->
+		<dependency>
+			<groupId>com.github.oshi</groupId>
+			<artifactId>oshi-core</artifactId>
+			<version>${oshi.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${jedis.version}</version>
+		</dependency>
+		<!-- velocity代码生成使用模板 -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-engine-core</artifactId>
+			<version>${velocity.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -157,7 +179,7 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			
+
 			<!-- 配置打包插件（设置主类，并打包成胖包） -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
