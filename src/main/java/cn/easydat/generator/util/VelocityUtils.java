@@ -127,6 +127,8 @@ public class VelocityUtils {
 		}
 		List<String> templates = new ArrayList<String>();
 		templates.add("vm/java/domain.java.vm");
+		templates.add("vm/java/domainBase.java.vm");
+		templates.add("vm/java/domain-example.java.vm");
 		templates.add("vm/java/mapper.java.vm");
 		templates.add("vm/java/service.java.vm");
 		templates.add("vm/java/serviceImpl.java.vm");
@@ -166,13 +168,15 @@ public class VelocityUtils {
 
 		if (template.contains("domain.java.vm")) {
 			fileName = StrUtil.format("{}/domain/{}.java", javaPath, className);
+		} else if (template.contains("domainBase.java.vm")) {
+			fileName = StrUtil.format("{}/domain/base/{}Base.java", javaPath, className);
 		}
 		if (template.contains("sub-domain.java.vm") && StrUtil.equals(GenConstants.TPL_SUB, genTable.getTplCategory())) {
 			fileName = StrUtil.format("{}/domain/{}.java", javaPath, genTable.getSubTable().getClassName());
 		} else if (template.contains("mapper.java.vm")) {
 			fileName = StrUtil.format("{}/mapper/{}Mapper.java", javaPath, className);
 		} else if (template.contains("service.java.vm")) {
-			fileName = StrUtil.format("{}/service/I{}Service.java", javaPath, className);
+			fileName = StrUtil.format("{}/service/{}Service.java", javaPath, className);
 		} else if (template.contains("serviceImpl.java.vm")) {
 			fileName = StrUtil.format("{}/service/impl/{}ServiceImpl.java", javaPath, className);
 		} else if (template.contains("controller.java.vm")) {
@@ -187,6 +191,8 @@ public class VelocityUtils {
 			fileName = StrUtil.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
 		} else if (template.contains("index-tree.vue.vm")) {
 			fileName = StrUtil.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
+		} else if (template.contains("domain-example.java.vm")) {
+			fileName = StrUtil.format("{}/example/{}Example.java", javaPath, className);
 		}
 		return fileName;
 	}

@@ -1,7 +1,11 @@
 package ${packageName}.mapper;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import ${packageName}.domain.${ClassName};
+import ${packageName}.example.${ClassName}Example;
 #if($table.sub)
 import ${packageName}.domain.${subClassName};
 #end
@@ -61,6 +65,17 @@ public interface ${ClassName}Mapper
      * @return 结果
      */
     public int delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaType}[] ${pkColumn.javaField}s);
+    
+    /**
+     * 查询${functionName}
+     */    
+    List<${ClassName}> selectByExample(${ClassName}Example example);
+    
+    /**
+     * 修改${functionName}
+     */    
+    int updateByExampleSelective(@Param("record") ${ClassName} record, @Param("example") ${ClassName}Example example);
+    
 #if($table.sub)
 
     /**

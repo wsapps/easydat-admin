@@ -1,0 +1,298 @@
+package ${packageName}.example;
+
+import java.util.List;
+import java.util.ArrayList;
+#set($isimportdata=true)
+#foreach ($import in $importList)
+#if($import != "com.fasterxml.jackson.annotation.JsonFormat")
+import ${import};
+#end
+#if($import == "java.util.Date")
+#set($isimportdata=false)
+#end
+#end
+#if($isimportdata)
+import ${importdata};
+#end
+
+import com.github.pagehelper.PageHelper;
+
+public class ${ClassName}Example
+{
+    protected List<Criteria> oredCriteria;
+
+    public ${ClassName}Example() {
+        oredCriteria = new ArrayList<Criteria>();
+    }
+
+    public List<Criteria> getOredCriteria() {
+        return oredCriteria;
+    }
+
+    public void or(Criteria criteria) {
+        oredCriteria.add(criteria);
+    }
+
+    public Criteria or() {
+        Criteria criteria = createCriteriaInternal(false);
+        oredCriteria.add(criteria);
+        return criteria;
+    }
+
+    public Criteria createCriteria(boolean allowNull) {
+        Criteria criteria = createCriteriaInternal(allowNull);
+        if (oredCriteria.size() == 0) {
+            oredCriteria.add(criteria);
+        }
+        return criteria;
+    }
+    
+    public Criteria createCriteria() {
+        return createCriteria(false);
+    }
+
+    protected Criteria createCriteriaInternal(boolean allowNull) {
+        Criteria criteria = new Criteria(allowNull);
+        return criteria;
+    }
+
+    public void clear() {
+        oredCriteria.clear();
+    }
+    
+    protected abstract static class GeneratedCriteria {
+        private boolean allowNull;
+        protected List<Criterion> criteria;
+
+        protected GeneratedCriteria(boolean allowNull) {
+            super();
+            criteria = new ArrayList<Criterion>();
+            this.allowNull = allowNull;
+        }
+
+        public boolean isValid() {
+            return criteria.size() > 0;
+        }
+
+        public List<Criterion> getAllCriteria() {
+            return criteria;
+        }
+
+        public List<Criterion> getCriteria() {
+            return criteria;
+        }
+
+        protected void addCriterion(String condition) {
+        	if (allowNull && null != PageHelper.getLocalPage()) {
+	            if (condition != null) {
+	                criteria.add(new Criterion(condition));
+	            }
+        	} else {
+        		if (condition == null) {
+                    throw new RuntimeException("Value for condition cannot be null");
+                }
+                criteria.add(new Criterion(condition));
+        	}
+        }
+
+        protected void addCriterion(String condition, Object value, String property) {
+        	if (allowNull && null != PageHelper.getLocalPage()) {
+                if (value != null) {
+                    criteria.add(new Criterion(condition, value));
+                }
+        	} else {
+        		if (value == null) {
+                    throw new RuntimeException("Value for " + property + " cannot be null");
+                }
+                criteria.add(new Criterion(condition, value));
+        	}
+        }
+
+        protected void addCriterion(String condition, Object value1, Object value2, String property) {
+        	if (allowNull && null != PageHelper.getLocalPage()) {
+                if (value1 != null && value2 != null) {
+                    criteria.add(new Criterion(condition, value1, value2));
+                }
+        	} else {
+        		if (value1 == null || value2 == null) {
+                    throw new RuntimeException("Between values for " + property + " cannot be null");
+                }
+                criteria.add(new Criterion(condition, value1, value2));
+        	}
+        }
+
+        #foreach ($column in $columns)
+        #if($column.isQuery == "1")
+        
+        #if($column.javaField.length() > 2 && $column.javaField.substring(1,2).matches("[A-Z]"))
+            #set($AttrName=$column.javaField)
+        #else
+            #set($AttrName=$column.javaField.substring(0,1).toUpperCase() + ${column.javaField.substring(1)})
+        #end
+        
+        public Criteria and${AttrName}IsNull() {
+            addCriterion("${column.columnName} is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}IsNotNull() {
+            addCriterion("${column.columnName} is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}EqualTo(${column.javaType} value) {
+            addCriterion("${column.columnName} =", value, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}NotEqualTo(${column.javaType} value) {
+            addCriterion("${column.columnName} <>", value, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}GreaterThan(${column.javaType} value) {
+            addCriterion("${column.columnName} >", value, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}GreaterThanOrEqualTo(${column.javaType} value) {
+            addCriterion("${column.columnName} >=", value, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}LessThan(${column.javaType} value) {
+            addCriterion("${column.columnName} <", value, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}LessThanOrEqualTo(${column.javaType} value) {
+            addCriterion("${column.columnName} <=", value, "$column.javaField");
+            return (Criteria) this;
+        }
+        
+        public Criteria and${AttrName}Like(String value) {
+            addCriterion("${column.columnName} like", value, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}NotLike(String value) {
+            addCriterion("${column.columnName} not like", value, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}In(List<${column.javaType}> values) {
+            addCriterion("${column.columnName} in", values, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}NotIn(List<${column.javaType}> values) {
+            addCriterion("${column.columnName} not in", values, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}Between(${column.javaType} value1, ${column.javaType} value2) {
+            addCriterion("${column.columnName} between", value1, value2, "$column.javaField");
+            return (Criteria) this;
+        }
+
+        public Criteria and${AttrName}NotBetween(${column.javaType} value1, ${column.javaType} value2) {
+            addCriterion("${column.columnName} not between", value1, value2, "$column.javaField");
+            return (Criteria) this;
+        }
+        #end
+        #end
+    }
+
+    public static class Criteria extends GeneratedCriteria {
+
+        protected Criteria(boolean allowNull) {
+            super(allowNull);
+        }
+    }
+
+    public static class Criterion {
+        private String condition;
+
+        private Object value;
+
+        private Object secondValue;
+
+        private boolean noValue;
+
+        private boolean singleValue;
+
+        private boolean betweenValue;
+
+        private boolean listValue;
+
+        private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
+
+        protected Criterion(String condition) {
+            super();
+            this.condition = condition;
+            this.typeHandler = null;
+            this.noValue = true;
+        }
+
+        protected Criterion(String condition, Object value, String typeHandler) {
+            super();
+            this.condition = condition;
+            this.value = value;
+            this.typeHandler = typeHandler;
+            if (value instanceof List<?>) {
+                this.listValue = true;
+            } else {
+                this.singleValue = true;
+            }
+        }
+
+        protected Criterion(String condition, Object value) {
+            this(condition, value, null);
+        }
+
+        protected Criterion(String condition, Object value, Object secondValue, String typeHandler) {
+            super();
+            this.condition = condition;
+            this.value = value;
+            this.secondValue = secondValue;
+            this.typeHandler = typeHandler;
+            this.betweenValue = true;
+        }
+
+        protected Criterion(String condition, Object value, Object secondValue) {
+            this(condition, value, secondValue, null);
+        }
+    }
+}

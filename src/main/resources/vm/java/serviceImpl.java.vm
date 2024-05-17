@@ -3,12 +3,12 @@ package ${packageName}.service.impl;
 import java.util.List;
 #foreach ($column in $columns)
 #if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
-import com.ruoyi.common.utils.DateUtils;
+import cn.hutool.core.date.DateUtil;
 #break
 #end
 #end
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.apache.ibatis.solon.annotation.Db;
+import org.noear.solon.annotation.Component;
 #if($table.sub)
 import java.util.ArrayList;
 import com.ruoyi.common.utils.StringUtils;
@@ -25,10 +25,10 @@ import ${packageName}.service.${ClassName}Service;
  * @author ${author}
  * @date ${datetime}
  */
-@Service
+@Component
 public class ${ClassName}ServiceImpl implements ${ClassName}Service 
 {
-    @Autowired
+    @Db
     private ${ClassName}Mapper ${className}Mapper;
 
     /**
@@ -69,7 +69,7 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service
     {
 #foreach ($column in $columns)
 #if($column.javaField == 'createTime')
-        ${className}.setCreateTime(DateUtils.getNowDate());
+        ${className}.setCreateTime(DateUtil.date());
 #end
 #end
 #if($table.sub)
@@ -95,7 +95,7 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service
     {
 #foreach ($column in $columns)
 #if($column.javaField == 'updateTime')
-        ${className}.setUpdateTime(DateUtils.getNowDate());
+        ${className}.setUpdateTime(DateUtil.date());
 #end
 #end
 #if($table.sub)

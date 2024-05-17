@@ -1,18 +1,22 @@
 server.port: 8080
 
-solon.app:
-  name: 'admin'
-  group: 'cn.easydat'
-  
-  logging.appender:
-    console:
-      level: TRACE
-    file:
-      name: "logs/${solon.app.name}"
-      rolling: "logs/${solon.app.name}_%d{yyyy-MM-dd}_%i.log"
-      level: INFO
-      maxFileSize: "10 MB"
-      maxHistory: "7"
+solon:
+  app:
+    name: 'admin'
+    group: 'cn.easydat'
+  serialization:
+    json:
+      dateAsFormat: 'yyyy-MM-dd HH:mm:ss' #配置日期格式（默认输出为时间戳）
+      dateAsTimeZone: 'GMT+8' #配置时区
+      dateAsTicks: false #将date转为毫秒数（和 dateAsFormat 二选一）
+      longAsString: true #将long型转为字符串输出 （默认为false）
+      boolAsInt: false   #将bool型转为字符串输出 （默认为false）
+      nullStringAsEmpty: false
+      nullBoolAsFalse: false
+      nullNumberAsZero: false
+      nullArrayAsEmpty: false
+      nullAsWriteable: false #输出所有null值
+      enumAsName: false #枚举使用名字（v2.2.1 后支持）
       
 easydat:
   xss:
@@ -49,7 +53,7 @@ easydat:
     # 默认生成包路径 system 需改成自己的模块名称 如 system monitor tool
     packageName: cn.easydat.admin
     # 自动去除表前缀，默认是false
-    autoRemovePre: false
+    autoRemovePre: true
     # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）
     tablePrefix: sys_
 sa-token:

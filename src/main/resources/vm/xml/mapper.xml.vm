@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${packageName}.mapper.${ClassName}Mapper">
     
-    <resultMap type="${ClassName}" id="${ClassName}Result">
+    <resultMap type="${packageName}.domain.${ClassName}" id="${ClassName}Result">
 #foreach ($column in $columns)
         <result property="${column.javaField}"    column="${column.columnName}"    />
 #end
@@ -112,6 +112,89 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{${pkColumn.javaField}}
         </foreach>
     </delete>
+    
+    <!-- example -->
+    <sql id="Example_Where_Clause">
+      <where>
+        <foreach collection="oredCriteria" item="criteria" separator="or">
+          <if test="criteria.valid">
+            <trim prefix="(" prefixOverrides="and" suffix=")">
+              <foreach collection="criteria.criteria" item="criterion">
+                <choose>
+                  <when test="criterion.noValue">
+                    and ${criterion.condition}
+                  </when>
+                  <when test="criterion.singleValue">
+                    and ${criterion.condition} #{criterion.value}
+                  </when>
+                  <when test="criterion.betweenValue">
+                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                  </when>
+                  <when test="criterion.listValue">
+                    and ${criterion.condition}
+                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                      #{listItem}
+                    </foreach>
+                  </when>
+                </choose>
+              </foreach>
+            </trim>
+          </if>
+        </foreach>
+      </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+      <where>
+        <foreach collection="example.oredCriteria" item="criteria" separator="or">
+          <if test="criteria.valid">
+            <trim prefix="(" prefixOverrides="and" suffix=")">
+              <foreach collection="criteria.criteria" item="criterion">
+                <choose>
+                  <when test="criterion.noValue">
+                    and ${criterion.condition}
+                  </when>
+                  <when test="criterion.singleValue">
+                    and ${criterion.condition} #{criterion.value}
+                  </when>
+                  <when test="criterion.betweenValue">
+                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                  </when>
+                  <when test="criterion.listValue">
+                    and ${criterion.condition}
+                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                      #{listItem}
+                    </foreach>
+                  </when>
+                </choose>
+              </foreach>
+            </trim>
+          </if>
+        </foreach>
+      </where>
+    </sql>
+    
+    <select id="selectByExample" parameterType="${packageName}.example.${ClassName}Example" resultMap="${ClassName}Result">
+	    <include refid="select${ClassName}Vo" />
+	    <if test="_parameter != null">
+	    <include refid="Example_Where_Clause" />
+	    </if>
+	</select>
+  
+	<update id="updateByExampleSelective" parameterType="map">
+    	update ${tableName}
+    	<set>
+		#foreach($column in $columns)
+		#if($column.columnName != $pkColumn.columnName)
+		<if test="record.${column.javaField} != null">$column.columnName = #{record.${column.javaField}},</if>
+		#end
+		#end
+    	</set>
+    	<if test="_parameter != null">
+      	<include refid="Update_By_Example_Where_Clause" />
+    	</if>
+	</update>
+	<!-- example -->
+    
 #if($table.sub)
     
     <delete id="delete${subClassName}By${subTableFkClassName}s" parameterType="String">
