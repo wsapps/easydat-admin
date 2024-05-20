@@ -11,6 +11,7 @@ import org.redisson.api.RList;
 import org.redisson.api.RMap;
 import org.redisson.api.RSet;
 import org.redisson.api.RedissonClient;
+import org.redisson.codec.JsonJacksonCodec;
 
 /**
  * Redis操作
@@ -30,7 +31,7 @@ public class RedisUtil {
      * @param value 缓存的值
      */
     public <T> void setCacheObject(final String key, final T value) {
-        RBucket<T> bucket = redissonClient.getBucket(key);
+        RBucket<T> bucket = redissonClient.getBucket(key, new JsonJacksonCodec());
         bucket.set(value);
     }
 
@@ -41,7 +42,7 @@ public class RedisUtil {
      * @param duration 有效时间
      */
     public <T> void setCacheObject(final String key, final T value, final Duration duration) {
-        RBucket<T> bucket = redissonClient.getBucket(key);
+        RBucket<T> bucket = redissonClient.getBucket(key, new JsonJacksonCodec());
         bucket.set(value);
         bucket.expire(duration);
     }
@@ -52,7 +53,7 @@ public class RedisUtil {
      * @return 缓存键值对应的数据
      */
     public <T> T getCacheObject(final String key) {
-        RBucket<T> bucket = redissonClient.getBucket(key);
+        RBucket<T> bucket = redissonClient.getBucket(key, new JsonJacksonCodec());
         return bucket.get();
     }
 
@@ -63,7 +64,7 @@ public class RedisUtil {
      * @return 剩余时间（单位：毫秒）
      */
     public <T> long getCacheObjectExpire(final String key) {
-        RBucket<T> bucket = redissonClient.getBucket(key);
+        RBucket<T> bucket = redissonClient.getBucket(key, new JsonJacksonCodec());
         return bucket.remainTimeToLive() == -2 ? 0L : bucket.remainTimeToLive();
     }
 
@@ -73,7 +74,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> boolean deleteCacheObject(final String key) {
-        RBucket<T> bucket = redissonClient.getBucket(key);
+        RBucket<T> bucket = redissonClient.getBucket(key, new JsonJacksonCodec());
         return bucket.delete();
     }
 
@@ -85,7 +86,7 @@ public class RedisUtil {
     public <T> void deleteCacheObjectAll(final String pattern) {
         Iterable<String> keysByPattern = getKeys(pattern);
         for (String key : keysByPattern) {
-            RBucket<T> bucket = redissonClient.getBucket(key);
+            RBucket<T> bucket = redissonClient.getBucket(key, new JsonJacksonCodec());
             bucket.delete();
         }
     }
@@ -98,7 +99,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> boolean setCacheList(final String key, final List<T> dataList) {
-        RList<T> list = redissonClient.getList(key);
+        RList<T> list = redissonClient.getList(key, new JsonJacksonCodec());
         return list.addAll(dataList);
     }
 
@@ -110,7 +111,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> boolean setCacheList(final String key, final List<T> dataList, final Duration duration) {
-        RList<T> list = redissonClient.getList(key);
+        RList<T> list = redissonClient.getList(key, new JsonJacksonCodec());
         boolean b = list.addAll(dataList);
         boolean expire = list.expire(duration);
         return b && expire;
@@ -122,7 +123,7 @@ public class RedisUtil {
      * @return 缓存键值对应的数据
      */
     public <T> List<T> getCacheList(final String key) {
-        RList<T> list = redissonClient.getList(key);
+        RList<T> list = redissonClient.getList(key, new JsonJacksonCodec());
         return list.readAll();
     }
 
@@ -132,7 +133,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> boolean deleteCacheList(final String key) {
-        RList<T> list = redissonClient.getList(key);
+        RList<T> list = redissonClient.getList(key, new JsonJacksonCodec());
         return list.delete();
     }
 
@@ -144,7 +145,7 @@ public class RedisUtil {
     public <T> void deleteCacheListAll(final String pattern) {
         Iterable<String> keysByPattern = getKeys(pattern);
         for (String key : keysByPattern) {
-            RList<T> list = redissonClient.getList(key);
+            RList<T> list = redissonClient.getList(key, new JsonJacksonCodec());
             list.delete();
         }
     }
@@ -157,7 +158,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> boolean setCacheSet(final String key, final Set<T> dataSet) {
-        RSet<T> set = redissonClient.getSet(key);
+        RSet<T> set = redissonClient.getSet(key, new JsonJacksonCodec());
         return set.addAll(dataSet);
     }
 
@@ -169,7 +170,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> boolean setCacheSet(final String key, final Set<T> dataSet, final Duration duration) {
-        RSet<T> set = redissonClient.getSet(key);
+        RSet<T> set = redissonClient.getSet(key, new JsonJacksonCodec());
         boolean b = set.addAll(dataSet);
         boolean expire = set.expire(duration);
         return b && expire;
@@ -181,7 +182,7 @@ public class RedisUtil {
      * @return 缓存键值对应的数据
      */
     public <T> Set<T> getCacheSet(final String key) {
-        RSet<T> set = redissonClient.getSet(key);
+        RSet<T> set = redissonClient.getSet(key, new JsonJacksonCodec());
         return set.readAll();
     }
 
@@ -191,7 +192,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> boolean deleteCacheSet(final String key) {
-        RSet<T> set = redissonClient.getSet(key);
+        RSet<T> set = redissonClient.getSet(key, new JsonJacksonCodec());
         return set.delete();
     }
 
@@ -203,7 +204,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> void setCacheMap(final String key, final Map<String, T> dataMap) {
-        RMap<String, T> map = redissonClient.getMap(key);
+        RMap<String, T> map = redissonClient.getMap(key, new JsonJacksonCodec());
         map.putAll(dataMap);
     }
 
@@ -215,7 +216,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> void setCacheMap(final String key, final Map<String, T> dataMap, final Duration duration) {
-        RMap<String, T> map = redissonClient.getMap(key);
+        RMap<String, T> map = redissonClient.getMap(key, new JsonJacksonCodec());
         map.putAll(dataMap);
         map.expire(duration);
     }
@@ -226,7 +227,7 @@ public class RedisUtil {
      * @return 缓存键值对应的数据
      */
     public <T> Map<String, T> getCacheMap(final String key) {
-        RMap<String, T> map = redissonClient.getMap(key);
+        RMap<String, T> map = redissonClient.getMap(key, new JsonJacksonCodec());
         return map.readAllMap();
     }
 
@@ -236,7 +237,7 @@ public class RedisUtil {
      * @return 缓存的对象
      */
     public <T> boolean deleteCacheMap(final String key) {
-        RMap<String, T> map = redissonClient.getMap(key);
+        RMap<String, T> map = redissonClient.getMap(key, new JsonJacksonCodec());
         return map.delete();
     }
 
